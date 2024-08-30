@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Preferences</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <img src="DG_Horizontal_Logo_Transparent.png" alt="Fast Food Logo" class="logo">
+            <h2>Friday Food Fun Preferences</h2>
+            <form id="orderForm" name="orderForm">
+                <label for="item">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Your name">
+                <label for="item">Veg / Non-Veg:</label>
+                <input type="text" id="veg-nonVeg" name="veg-nonVeg" placeholder="Enter Food Prefrences">
+                <label for="item">Item Name:</label>
+                <input type="text" id="foodname" name="foodname"
+                    placeholder="Burger | Pizza | Rolls | Samosa  [ Eg: Pizza(Paneer) ]">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwrvd3n07evAdFi4KsJMJvubloC1oOOG9-hUQlGJ54BAIRLnscBfsMk-WrTLlj3UfjWhA/exec';
+        // const scriptURL = 'https://script.google.com/macros/s/AKfycbyliKtYNEV-kDtoR2qBhwUHkPJx6YLYATqgkZqVDRcyXPDF4WCfvm7fjIHrM-VuRJbG8w/exec';
+        const form = document.getElementById('orderForm')
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank you! Your form is submitted successfully."))
+                .then(() => { window.location.reload(); })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>
